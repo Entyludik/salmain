@@ -370,6 +370,9 @@
     const input = document.getElementById('hashIdInput');
     const hashId = input.value.trim();
     
+    // Очистка предыдущих классов ошибок
+    input.classList.remove('error');
+
     if (hashId.length === 0) {
         input.classList.add('error');
         input.placeholder = 'Введите hash id';
@@ -378,11 +381,16 @@
         input.placeholder = 'Неверный Hash ID';
         input.value = ''; // Очистка поля ввода
     } else {
-        input.classList.remove('error');
         document.getElementById('diamond').style.display = 'none'; // Скрыть алмаз
-        startShuffle();
+        startShuffle(); // Запустить шифровку
     }
+    
+    // Снять фокус с инпута, чтобы закрыть клавиатуру
+    input.blur();
 }
+
+
+
         function startShuffle() {
             document.getElementById('modal').style.display = 'none';
             document.querySelectorAll('.container img').forEach(img => {
